@@ -10,9 +10,7 @@
 #include <iostream>
 
 
-void fFoo(int){
-    
-}
+void fFoo(int){}
 
 
 const int numStandards = 7;
@@ -22,9 +20,6 @@ const char* stdName[numStandards] = { "Pre-C++11", "C++11", "C++14", "C++17", "C
 
 long getCPPStandard()
 {
-    // Visual Studio is non-conforming in support for __cplusplus (unless you set a specific compiler flag, which you probably haven't)
-    // In Visual Studio 2015 or newer we can use _MSVC_LANG instead
-    // See https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/
 #if defined (_MSVC_LANG)
     return _MSVC_LANG;
 #elif defined (_MSC_VER)
@@ -67,20 +62,43 @@ void fVersion(){
     
 }
 
+void print(char* str){
+    std::cout << str;
+}
+
+int add(int a, int b){
+    return a+b;
+}
+
 
 // funciton main
 int main() {
-    // insert code here...
     std::cout << "Salam ALeykoym !\n";
     
+    [[maybe_unused]]int x (32); // direct initialization
+    [[maybe_unused]]int y {64}; // list initialization
+    [[maybe_unused]]int z = {0}; // copy-lit initialization (used when value is needed like to prit it on cosole immediatly after init)
+    
     unsigned int t {5*2};
-    fFoo(t);
-
+    
+    //static_cast<void>(std::cout << "x ="), static_cast<void>(x) ,static_cast<void>("y = "),static_cast<void>(y), static_cast<void>("t ="),static_cast<void>(t);
+    
     for(int i = 0; i <= t; i++){
-        std::cout << i <<"\n";
+        for (int j = 1; j <i; j++){
+            std::cout << "*" << "\n" "-" << std::endl;
+        }
     }
     
     fVersion();
+    
+    // take data
+    int age_d {};
+    std::cout << "Enter your age :";
+    
+    std::cin>> age_d;
+    
+    std::cout<< "Salam "<< " ahmad " << " you'r "<< age_d << "\n";
+    
     
     return 0;
 }
